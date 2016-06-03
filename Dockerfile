@@ -12,6 +12,6 @@ RUN yum install -y tar openssh-clients git python-setuptools && \
     chown -R gogs:gogs /var/gogs
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
-
+USER gogs
 EXPOSE 80 3000
 CMD ["/usr/bin/supervisord"]
