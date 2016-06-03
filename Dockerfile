@@ -23,8 +23,8 @@ RUN yum install -y gogs openssh-clients sudo
 #    chown -R gogs:gogs /var/gogs
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
-COPY app.ini /var/gogs/gogs/custom/conf/app.ini
-
+COPY app.ini /tmp/gogs-app.ini
+RUN sudo -u gogs cp /tmp/gogs-app.ini /opt/gogs/custom/conf/app.ini
 #USER gogs
 EXPOSE 80 3000
 #CMD ["/usr/bin/supervisord"]
