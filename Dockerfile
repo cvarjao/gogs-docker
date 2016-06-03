@@ -9,7 +9,7 @@ RUN yum install -y tar openssh-clients git python-setuptools && \
     mkdir -p /var/gogs && \
     mkdir -p /var/gogs/gogs/custom/conf && \
     mkdir -p /var/gogs/gogs-repositories && \
-    mkdir -p /var/gogs/gogs-log
+    mkdir -p /var/gogs/gogs-log && \
     mkdir -p /var/log/supervisor && \
     (cd /var/gogs && tar -xzf /tmp/gogs.tar.gz) && \
     chown -R gogs:gogs /var/gogs
