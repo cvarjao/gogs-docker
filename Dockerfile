@@ -1,3 +1,4 @@
+# Must use URL
 FROM registry.access.redhat.com/rhel7
 MAINTAINER cleciovarjao@gmail.com
 
