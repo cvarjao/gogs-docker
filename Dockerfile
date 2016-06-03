@@ -8,10 +8,15 @@ RUN rpm --import https://rpm.packager.io/key && \
     echo 'name=Repository for pkgr/gogs application.' >> /tmp/gogs.repo && \
     echo 'baseurl=https://rpm.packager.io/gh/pkgr/gogs/centos7/pkgr' >> /tmp/gogs.repo && \
     echo 'enabled=1' >> /tmp/gogs.repo && \
-    cat /tmp/gogs.repo | tee /etc/yum.repos.d/gogs.repo
-
-RUN yum install -y gogs openssh-clients sudo s6 cronie && \
+    cat /tmp/gogs.repo | tee /etc/yum.repos.d/gogs.repo && \
+    yum install -y tar gogs openssh-clients sudo s6 cronie && \
     sed -i '/Defaults    requiretty/s/^/#/' /etc/sudoers
+
+# Add s6 overlay (https://github.com/just-containers/s6-overlay)
+ADD https://github.com/just-containers/s6-overlay/releases/download/v1.17.2.0/s6-overlay-amd64.tar.gz /tmp/
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" --exclude="./sbin" && \
+    tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin ./sbin
+
 #RUN yum install -y tar openssh-clients git python-setuptools && \
 #    easy_install supervisor && \
 #    useradd -U gogs && \
