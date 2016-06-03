@@ -7,11 +7,16 @@ RUN yum install -y tar openssh-clients git python-setuptools && \
     useradd -U gogs && \
     useradd -U git && \
     mkdir -p /var/gogs && \
+    mkdir -p /var/gogs/gogs/custom/conf && \
+    mkdir -p /var/gogs/gogs-repositories && \
+    mkdir -p /var/gogs/gogs-log
     mkdir -p /var/log/supervisor && \
     (cd /var/gogs && tar -xzf /tmp/gogs.tar.gz) && \
     chown -R gogs:gogs /var/gogs
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY app.ini /var/gogs/gogs/custom/conf/app.ini
+
 #USER gogs
 EXPOSE 80 3000
 #CMD ["/usr/bin/supervisord"]
