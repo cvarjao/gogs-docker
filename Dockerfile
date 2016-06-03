@@ -10,8 +10,7 @@ RUN rpm --import https://rpm.packager.io/key && \
     cat /tmp/gogs.repo | tee /etc/yum.repos.d/gogs.repo
 
 RUN yum install -y gogs openssh-clients sudo && \
-    grep 'requiretty' /etc/sudoers && \
-    sed '/Defaults    requiretty/s/^/#/' /etc/sudoers | grep 'requiretty'
+    sed -i '/Defaults    requiretty/s/^/#/' /etc/sudoers
 #RUN yum install -y tar openssh-clients git python-setuptools && \
 #    easy_install supervisor && \
 #    useradd -U gogs && \
