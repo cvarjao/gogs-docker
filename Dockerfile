@@ -1,4 +1,4 @@
-FROM centos7
+FROM openshift/centos7
 MAINTAINER cleciovarjao@gmail.com
 
 # Install system utils & Gogs runtime dependencies
