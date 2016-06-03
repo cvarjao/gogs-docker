@@ -7,7 +7,8 @@ RUN yum install -y tar openssh-clients git supervisor && \
     useradd -U git && \
     mkdir -p /var/gogs && \
     mkdir -p /var/log/supervisor && \
-    (cd /var/gogs && tar -xzf /tmp/gogs.tar.gz)
+    (cd /var/gogs && tar -xzf /tmp/gogs.tar.gz) && \
+    chown -R gogs:gogs /var/gogs
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
