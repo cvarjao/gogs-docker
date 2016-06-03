@@ -1,4 +1,4 @@
-FROM rhscl/mysql-56-rhel7
+FROM registry.access.redhat.com/rhscl/python-34-rhel7
 MAINTAINER cleciovarjao@gmail.com
 
 # Install system utils & Gogs runtime dependencies
