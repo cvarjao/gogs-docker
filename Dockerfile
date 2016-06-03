@@ -10,5 +10,5 @@ RUN yum install -y tar openssh-clients && \
 # Install system utils & Gogs runtime dependencies
 RUN uname -a
 
-EXPOSE 80
+EXPOSE 80 3000
 ENTRYPOINT ["/var/gogs/gogs/gogs", "web"]
