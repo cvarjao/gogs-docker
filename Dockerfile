@@ -1,4 +1,4 @@
-FROM rhel7
+FROM centos7
 MAINTAINER cleciovarjao@gmail.com
 
 # Install system utils & Gogs runtime dependencies
