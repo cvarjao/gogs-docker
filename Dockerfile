@@ -2,10 +2,10 @@
 FROM registry.access.redhat.com/rhel7
 MAINTAINER cleciovarjao@gmail.com
 #ADD https://cdn.gogs.io/gogs_v0.9.13_linux_amd64.tar.gz /tmp/gogs.tar.gz
-RUN sudo rpm --import https://rpm.packager.io/key && echo '[gogs]\n\
+RUN rpm --import https://rpm.packager.io/key && echo '[gogs]\n\
 name=Repository for pkgr/gogs application.\n\
 baseurl=https://rpm.packager.io/gh/pkgr/gogs/centos7/pkgr\n\
-enabled=1' | sudo tee /etc/yum.repos.d/gogs.repo
+enabled=1' | tee /etc/yum.repos.d/gogs.repo
 
 RUN yum install -y gogs openssh-clients
 #RUN yum install -y tar openssh-clients git python-setuptools && \
