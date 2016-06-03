@@ -9,7 +9,8 @@ RUN rpm --import https://rpm.packager.io/key && \
     echo 'enabled=1' >> /tmp/gogs.repo && \
     cat /tmp/gogs.repo | tee /etc/yum.repos.d/gogs.repo
 
-RUN yum install -y gogs openssh-clients sudo
+RUN yum install -y gogs openssh-clients sudo && \
+    cat /etc/sudoers
 #RUN yum install -y tar openssh-clients git python-setuptools && \
 #    easy_install supervisor && \
 #    useradd -U gogs && \
@@ -24,7 +25,9 @@ RUN yum install -y gogs openssh-clients sudo
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 COPY app.ini /tmp/gogs-app.ini
-RUN sudo -Hu gogs cp /tmp/gogs-app.ini /opt/gogs/custom/conf/app.ini
+RUN ls -la /opt/gogs/custom/conf/app.ini && \
+    cp /tmp/gogs-app.ini /opt/gogs/custom/conf/app.ini && \
+    ls -la /opt/gogs/custom/conf/app.ini
 #USER gogs
 EXPOSE 80 3000
 #CMD ["/usr/bin/supervisord"]
