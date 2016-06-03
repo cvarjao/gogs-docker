@@ -38,5 +38,5 @@ RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
 EXPOSE 80 3000
 WORKDIR /home/gogs
 #CMD ["/usr/bin/supervisord"]
-CMD ["sudo", "-Hu", "gogs","/opt/gogs/gogs","web"]
+ENTRYPOINT ["/bin/s6-svscan", "/app/gogs/docker/s6/"]
 #CMD ["top", "-b"]
