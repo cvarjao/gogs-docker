@@ -9,7 +9,7 @@ RUN rpm --import https://rpm.packager.io/key && \
     echo 'enabled=1' >> /tmp/gogs.repo && \
     cat /tmp/gogs.repo | tee /etc/yum.repos.d/gogs.repo
 
-RUN yum install -y gogs openssh-clients
+RUN yum install -y gogs openssh-clients sudo
 #RUN yum install -y tar openssh-clients git python-setuptools && \
 #    easy_install supervisor && \
 #    useradd -U gogs && \
