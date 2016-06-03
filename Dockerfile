@@ -7,7 +7,7 @@ RUN rpm --import https://rpm.packager.io/key && \
     echo 'name=Repository for pkgr/gogs application.' >> /tmp/gogs.repo && \
     echo 'baseurl=https://rpm.packager.io/gh/pkgr/gogs/centos7/pkgr' >> /tmp/gogs.repo && \
     echo 'enabled=1' >> /tmp/gogs.repo && \
-    cat /tmp/gogs.rep | tee /etc/yum.repos.d/gogs.repo
+    cat /tmp/gogs.repo | tee /etc/yum.repos.d/gogs.repo
 
 RUN yum install -y gogs openssh-clients
 #RUN yum install -y tar openssh-clients git python-setuptools && \
