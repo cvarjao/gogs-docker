@@ -31,5 +31,5 @@ RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
 #USER gogs
 EXPOSE 80 3000
 #CMD ["/usr/bin/supervisord"]
-#CMD ["/var/gogs/gogs/gogs","web"]
-CMD ["top", "-b"]
+CMD ["sudo", "-Hu", "gogs","/opt/gogs/gogs","web"]
+#CMD ["top", "-b"]
