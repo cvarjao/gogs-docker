@@ -30,6 +30,7 @@ RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
     ls -la /opt/gogs/custom/conf/app.ini
 #USER gogs
 EXPOSE 80 3000
+WORKDIR /home/gogs
 #CMD ["/usr/bin/supervisord"]
 CMD ["sudo", "-Hu", "gogs","/opt/gogs/gogs","web"]
 #CMD ["top", "-b"]
