@@ -39,13 +39,16 @@ RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" --exclude="./sbi
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 COPY app.ini /tmp/gogs-app.ini
+COPY ./files/ /
+
 RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
     cp /tmp/gogs-app.ini /opt/gogs/custom/conf/app.ini && \
     ls -la /opt/gogs/custom/conf/app.ini && \
     mkdir -p /app/gogs/ && mkdir -p /data/gogs/ && \
-    mkdir -p /app/gogs/s6
+    mkdir -p /app/gogs/s6 && \
+    find /app -ls
 
-COPY ./files/ /
+
 
 #USER gogs
 EXPOSE 80 3000
