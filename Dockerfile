@@ -23,11 +23,11 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v1.17.2.0/s6
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" --exclude="./sbin" && \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin ./sbin && \
     chmod +x /usr/local/bin/gosu && \
-    gosu nobody true
+    useradd -Um gogs && \
+    useradd -Um git
 
 #RUN yum install -y tar openssh-clients git python-setuptools && \
 #    easy_install supervisor && \
-#    useradd -U gogs && \
 #    useradd -U git && \
 #    mkdir -p /var/gogs && \
 #    mkdir -p /var/gogs/gogs/custom/conf && \
@@ -51,7 +51,7 @@ RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
 
 #USER gogs
 EXPOSE 80 3000
-WORKDIR /app/gogs
+WORKDIR /home/gogs
 VOLUME ["/data"]
 
 #CMD ["/usr/bin/supervisord"]
