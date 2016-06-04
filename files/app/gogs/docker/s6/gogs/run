@@ -1,4 +1,5 @@
 #!/bin/sh
 
 export USER=gogs
+cd /home/gogs
 exec gosu $USER /opt/gogs/gogs web
