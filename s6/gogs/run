@@ -1,4 +1,4 @@
 #!/bin/sh
 
-export USER=git
+export USER=gogs
 exec gosu $USER /app/gogs/gogs web
