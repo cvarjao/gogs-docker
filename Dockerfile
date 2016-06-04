@@ -12,10 +12,14 @@ RUN rpm --import https://rpm.packager.io/key && \
     yum install -y tar gogs openssh-clients sudo s6 cronie && \
     sed -i '/Defaults    requiretty/s/^/#/' /etc/sudoers
 
+ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64 /usr/local/bin/gosu
+ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64.asc /usr/local/bin/gosu.asc
+
 # Add s6 overlay (https://github.com/just-containers/s6-overlay)
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.17.2.0/s6-overlay-amd64.tar.gz /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" --exclude="./sbin" && \
-    tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin ./sbin
+    tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin ./sbin && \
+    gosu
 
 #RUN yum install -y tar openssh-clients git python-setuptools && \
 #    easy_install supervisor && \
