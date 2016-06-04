@@ -2,6 +2,8 @@
 FROM registry.access.redhat.com/rhel7
 MAINTAINER cleciovarjao@gmail.com
 
+ENV GOGS_CUSTOM /data/gogs
+
 #ADD https://cdn.gogs.io/gogs_v0.9.13_linux_amd64.tar.gz /tmp/gogs.tar.gz
 RUN rpm --import https://rpm.packager.io/key && \
     echo '[gogs]' >> /tmp/gogs.repo && \
@@ -10,7 +12,8 @@ RUN rpm --import https://rpm.packager.io/key && \
     echo 'enabled=1' >> /tmp/gogs.repo && \
     cat /tmp/gogs.repo | tee /etc/yum.repos.d/gogs.repo && \
     yum install -y tar gogs openssh-clients sudo s6 cronie && \
-    sed -i '/Defaults    requiretty/s/^/#/' /etc/sudoers
+    sed -i '/Defaults    requiretty/s/^/#/' /etc/sudoers && \
+    yum clean all -y
 
 ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64 /usr/local/bin/gosu
 ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64.asc /usr/local/bin/gosu.asc
@@ -38,10 +41,17 @@ COPY supervisord.conf /etc/supervisor/supervisord.conf
 COPY app.ini /tmp/gogs-app.ini
 RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
     cp /tmp/gogs-app.ini /opt/gogs/custom/conf/app.ini && \
-    ls -la /opt/gogs/custom/conf/app.ini
+    ls -la /opt/gogs/custom/conf/app.ini && \
+    mkdir -p /app/gogs/ && mkdir -p /data/gogs/ && \
+    mkdir -p /app/gogs/s6
+
+COPY ./s6/ /app/gogs/s6/
+
 #USER gogs
 EXPOSE 80 3000
-WORKDIR /home/gogs
+WORKDIR /app/gogs
+VOLUME ["/data"]
+
 #CMD ["/usr/bin/supervisord"]
 ENTRYPOINT ["/bin/s6-svscan", "/app/gogs/docker/s6/"]
 #CMD ["top", "-b"]
