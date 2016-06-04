@@ -46,6 +46,7 @@ RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
     ls -la /opt/gogs/custom/conf/app.ini && \
     mkdir -p /app/gogs/ && mkdir -p /data/gogs/ && \
     mkdir -p /app/gogs/s6 && \
+    chmod +x /app/gogs/docker/start.sh && \
     find /app -ls
 
 #USER gogs
