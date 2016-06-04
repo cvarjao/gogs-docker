@@ -45,7 +45,7 @@ RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
     mkdir -p /app/gogs/ && mkdir -p /data/gogs/ && \
     mkdir -p /app/gogs/s6
 
-COPY ./s6/ /app/gogs/s6/
+COPY ./files/ /
 
 #USER gogs
 EXPOSE 80 3000
@@ -53,5 +53,5 @@ WORKDIR /app/gogs
 VOLUME ["/data"]
 
 #CMD ["/usr/bin/supervisord"]
-ENTRYPOINT ["/bin/s6-svscan", "/app/gogs/docker/s6/"]
+ENTRYPOINT ["/app/gogs/docker/start.sh"]
 #CMD ["top", "-b"]
