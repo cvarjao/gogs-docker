@@ -41,6 +41,7 @@ RUN mkdir -p /app/gogs/ && mkdir -p /data/gogs/ && \
     mkdir -p /app/gogs/s6 && \
     chmod +x /app/gogs/docker/start.sh && \
     chown -R gogs:gogs /home/gogs && \
+    chown -R gogs:gogs /data/gogs && \
     find /app/gogs/docker/s6 -type f -exec chmod +x {} \; && \
     find /app -ls
 
