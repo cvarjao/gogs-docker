@@ -2,7 +2,7 @@
 FROM registry.access.redhat.com/rhel7
 MAINTAINER cleciovarjao@gmail.com
 
-ENV GOGS_CUSTOM /data/gogs
+ENV GOGS_CUSTOM /home/gogs
 
 #ADD https://cdn.gogs.io/gogs_v0.9.13_linux_amd64.tar.gz /tmp/gogs.tar.gz
 RUN rpm --import https://rpm.packager.io/key && \
