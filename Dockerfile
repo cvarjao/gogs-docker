@@ -37,10 +37,7 @@ RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" --exclude="./sbi
 
 COPY ./files/ /
 
-RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
-    cp /tmp/gogs-app.ini /opt/gogs/custom/conf/app.ini && \
-    ls -la /opt/gogs/custom/conf/app.ini && \
-    mkdir -p /app/gogs/ && mkdir -p /data/gogs/ && \
+RUN mkdir -p /app/gogs/ && mkdir -p /data/gogs/ && \
     mkdir -p /app/gogs/s6 && \
     chmod +x /app/gogs/docker/start.sh && \
     chown -R gogs:gogs /home/gogs && \
