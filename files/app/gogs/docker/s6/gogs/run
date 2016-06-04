@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export USER=gogs
+exec gosu $USER /app/gogs/gogs web
