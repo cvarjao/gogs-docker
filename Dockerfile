@@ -35,8 +35,6 @@ RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" --exclude="./sbi
 #    (cd /var/gogs && tar -xzf /tmp/gogs.tar.gz) && \
 #    chown -R gogs:gogs /var/gogs
 
-COPY supervisord.conf /etc/supervisor/supervisord.conf
-COPY app.ini /tmp/gogs-app.ini
 COPY ./files/ /
 
 RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
