@@ -19,7 +19,8 @@ ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64.asc /usr/loc
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.17.2.0/s6-overlay-amd64.tar.gz /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" --exclude="./sbin" && \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin ./sbin && \
-    gosu
+    chmod +x /usr/local/bin/gosu && \
+    gosu nobody true
 
 #RUN yum install -y tar openssh-clients git python-setuptools && \
 #    easy_install supervisor && \
