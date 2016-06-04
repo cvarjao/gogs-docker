@@ -48,8 +48,6 @@ RUN sudo -u gogs mkdir -p /opt/gogs/custom/conf && \
     mkdir -p /app/gogs/s6 && \
     find /app -ls
 
-
-
 #USER gogs
 EXPOSE 80 3000
 WORKDIR /app/gogs
