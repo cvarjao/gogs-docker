@@ -1,0 +1,7 @@
+
+curl 'http://localhost/install' \
+  -H 'Pragma: no-cache' -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
+  -H 'Cache-Control: no-cache' \
+  --data 'db_type=MySQL&db_host=172.16.121.149%3A3306&db_user=gogs&db_passwd=gogs&db_name=gogs&ssl_mode=disable&db_path=data%2Fgogs.db&app_name=Gogs%3A+Go+Git+Service&repo_root_path=%2Fdata%2Fgogs%2Fgogs-repositories&run_user=gogs&domain=localhost&ssh_port=0&http_port=3000&app_url=http%3A%2F%2Flocalhost%3A3000%2F&log_root_path=%2Fdata%2Fgogs%2Flog&smtp_host=&smtp_from=&smtp_email=&smtp_passwd=&enable_captcha=on&admin_name=docker&admin_passwd=docker&admin_confirm_passwd=docker&admin_email=docker%40pathfinder.gov.bc.ca' --compressed
+  
