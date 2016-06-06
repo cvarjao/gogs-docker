@@ -2,17 +2,19 @@
 
 export USER=gogs
 cd /home/gogs
-if [ -e "/home/gogs/conf/app.ini" ]
+if [ ! -e "/home/gogs/conf/app.ini" ]
 then
   exec gosu $USER /opt/gogs/gogs web
 else
   gosu $USER /opt/gogs/gogs web &
   #sleep for 5 seconds
   
-  sleep 5
-  exec gosu $USER /opt/gogs/gogs web
+  while ! curl -s -k -I -m 5 "http://localhost:3000/install" | grep 'HTTP/1.1 '; do echo "Waiting for Setup Page -- http://localhost:3000/install (Sleeping 2s) ..."; sleep 2; done
+  
+  #setup is done, now restarting service
+  ps aux | grep /opt/gogs/gogs | grep -v grep | cut -c1-20 | awk '{ print $2 }' | xargs kill -9
 fi
 
-gosu $USER /opt/gogs/gogs web &
+exec gosu $USER /opt/gogs/gogs web
 
 
