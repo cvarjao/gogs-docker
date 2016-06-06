@@ -2,4 +2,17 @@
 
 export USER=gogs
 cd /home/gogs
-exec gosu $USER /opt/gogs/gogs web
+if [ -e "/home/gogs/conf/app.ini" ]
+then
+  exec gosu $USER /opt/gogs/gogs web
+else
+  gosu $USER /opt/gogs/gogs web &
+  #sleep for 5 seconds
+  
+  sleep 5
+  exec gosu $USER /opt/gogs/gogs web
+fi
+
+gosu $USER /opt/gogs/gogs web &
+
+
