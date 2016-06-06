@@ -4,8 +4,7 @@ export USER=gogs
 cd /home/gogs
 if [ ! -e "/home/gogs/conf/app.ini" ]
 then
-  exec gosu $USER /opt/gogs/gogs web
-else
+  echo 'Setting up ...'
   gosu $USER /opt/gogs/gogs web &
   #sleep for 5 seconds
   
