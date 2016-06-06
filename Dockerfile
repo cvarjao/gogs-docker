@@ -35,6 +35,8 @@ RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" --exclude="./sbi
 #    (cd /var/gogs && tar -xzf /tmp/gogs.tar.gz) && \
 #    chown -R gogs:gogs /var/gogs
 
+#
+
 COPY ./files/ /
 
 RUN mkdir -p /app/gogs/ && mkdir -p /data/gogs/ && \
